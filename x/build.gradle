@@ -1,19 +1,16 @@
-apply plugin: rootProject.ext.plugins.library
+apply plugin: 'com.android.library'
 
 android {
 
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    compileSdkVersion 30
 
     defaultConfig {
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        minSdkVersion 21
+        targetSdkVersion 30
         consumerProguardFiles 'proguard-rules.txt'
     }
-
-    resourcePrefix 'x_recycler'
 }
 
 dependencies {
-    api rootProject.ext.dependencies.xRecyclerView
+    compileOnly 'androidx.recyclerview:recyclerview:1.2.1'
 }

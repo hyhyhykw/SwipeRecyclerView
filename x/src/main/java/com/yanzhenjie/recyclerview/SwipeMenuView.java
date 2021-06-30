@@ -22,7 +22,6 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -31,15 +30,11 @@ import java.util.List;
 
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.TextViewCompat;
-import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by Yan Zhenjie on 2016/7/26.
  */
-public class SwipeMenuView extends LinearLayout implements View.OnClickListener {
-
-    private RecyclerView.ViewHolder mViewHolder;
-    private OnItemMenuClickListener mItemClickListener;
+public class SwipeMenuView extends LinearLayout  {
 
     public SwipeMenuView(Context context) {
         this(context, null);
@@ -54,12 +49,10 @@ public class SwipeMenuView extends LinearLayout implements View.OnClickListener 
         setGravity(Gravity.CENTER_VERTICAL);
     }
 
-    public void createMenu(RecyclerView.ViewHolder viewHolder, SwipeMenu swipeMenu, Controller controller,
-        int direction, OnItemMenuClickListener itemClickListener) {
+    public void createMenu(SwipeMenu swipeMenu,
+                           Controller controller,
+                           int direction) {
         removeAllViews();
-
-        this.mViewHolder = viewHolder;
-        this.mItemClickListener = itemClickListener;
 
         List<SwipeMenuItem> items = swipeMenu.getMenuItems();
         for (int i = 0; i < items.size(); i++) {
@@ -73,7 +66,6 @@ public class SwipeMenuView extends LinearLayout implements View.OnClickListener 
             parent.setOrientation(VERTICAL);
             parent.setLayoutParams(params);
             ViewCompat.setBackground(parent, item.getBackground());
-            parent.setOnClickListener(this);
             addView(parent);
 
             SwipeMenuBridge menuBridge = new SwipeMenuBridge(controller, direction, i);
@@ -91,12 +83,6 @@ public class SwipeMenuView extends LinearLayout implements View.OnClickListener 
         }
     }
 
-    @Override
-    public void onClick(View v) {
-        if (mItemClickListener != null) {
-            mItemClickListener.onItemClick((SwipeMenuBridge)v.getTag(), mViewHolder.getAdapterPosition());
-        }
-    }
 
     private ImageView createIcon(SwipeMenuItem item) {
         ImageView imageView = new ImageView(getContext());

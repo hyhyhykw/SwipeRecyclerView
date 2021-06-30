@@ -15,21 +15,7 @@
  */
 package com.yanzhenjie.recyclerview.sample.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-
-import com.yanzhenjie.recyclerview.sample.R;
-import com.yanzhenjie.recyclerview.sample.activity.expanded.ExpandableActivity;
-import com.yanzhenjie.recyclerview.sample.activity.group.GroupActivity;
-import com.yanzhenjie.recyclerview.sample.activity.header.HeaderViewActivity;
-import com.yanzhenjie.recyclerview.sample.activity.load.RefreshLoadActivity;
-import com.yanzhenjie.recyclerview.sample.activity.menu.MenuActivity;
-import com.yanzhenjie.recyclerview.sample.activity.move.MoveActivity;
-import com.yanzhenjie.recyclerview.sample.activity.nested.NestedActivity;
-
-import java.util.Arrays;
-import java.util.List;
 
 
 /**
@@ -44,51 +30,5 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mRecyclerView.setAdapter(mAdapter);
-        mAdapter.notifyDataSetChanged(mDataList);
-    }
-
-    @Override
-    public void onItemClick(View itemView, int position) {
-        switch (position) {
-            case 0: {
-                startActivity(new Intent(this, MenuActivity.class));
-                break;
-            }
-            case 1: {
-                startActivity(new Intent(this, MoveActivity.class));
-                break;
-            }
-            case 2: {
-                startActivity(new Intent(this, HeaderViewActivity.class));
-                break;
-            }
-            case 3: {
-                startActivity(new Intent(this, RefreshLoadActivity.class));
-                break;
-            }
-            case 4: {
-                startActivity(new Intent(this, NestedActivity.class));
-                break;
-            }
-            case 5: {
-                startActivity(new Intent(this, ExpandableActivity.class));
-                break;
-            }
-            case 6: {
-                startActivity(new Intent(this, GroupActivity.class));
-                break;
-            }
-        }
-    }
-
-    @Override
-    protected boolean displayHomeAsUpEnabled() {
-        return false;
-    }
-
-    @Override
-    protected List<String> createDataList() {
-        return Arrays.asList(getResources().getStringArray(R.array.main_item));
     }
 }
